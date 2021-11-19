@@ -57,7 +57,7 @@ class OrgaController extends \controllers\ControllerBase{
 
 	#[Get(path: "orga/getOne/{id}",name: "orgas.getOne")]
 	public function getOne($id){
-		$this->repo->byId($id,['users','groupes']);
+		$this->repo->byId($id,['users.groupes','groupes.users']);
 		$this->loadView('OrgaController/getOne.html');
 
 	}
