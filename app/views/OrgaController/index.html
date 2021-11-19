@@ -1,0 +1,10 @@
+<h1>Organisations</h1>
+<ul>
+{% for orga in orgas %}
+    <li>{{orga.name}}
+        <a href="{{path('orgas.update',[orga.id])}}">
+        <i class="ui edit icon"></i>
+        </a>
+    </li>
+{% endfor %}
+</ul>
