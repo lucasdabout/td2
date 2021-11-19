@@ -18,7 +18,7 @@
 
             <li>{{user}}
                 {% if user.groupes|length >0 %}
-                <label class="ui tiny black circular label"><i class="ui users icon"></i> {{user.groupes|length}}</label></li>
+                <label class="ui tiny circular label"><i class="ui users icon"></i> {{user.groupes|length}}</label></li>
                 {% endif %}
             {% endfor %}
         </div>
@@ -27,7 +27,7 @@
             {% for groupe in byId.groupes %}
             <li>{{groupe}}
                 {% if groupe.users|length >0 %}
-                <label class="ui tiny black circular label"><i class="ui user icon"></i>{{groupe.users|length}}</label></li>
+                <label class="ui tiny circular label"><i class="ui user icon"></i>{{groupe.users|length}}</label></li>
             {% endif %}
             {% endfor %}
         </div>
