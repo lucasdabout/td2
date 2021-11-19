@@ -1,2 +1,2 @@
 <?php
-return array("orgas"=>["/orgas/update/(.+?)/"]);
+return array("orgas"=>["/orgas/update/(.+?)/"],"orga"=>["/orga/getOne/(.+?)/"]);

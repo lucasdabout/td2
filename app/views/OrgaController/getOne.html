@@ -1,0 +1,20 @@
+{%  extends "OrgaController/base.html" %}
+{% block header %}
+<a href="{{ path('orga.index') }}" data-target="body"  class="ui basic inverted button">
+    <i class="factory icon"></i>Organisations
+</a>
+{% endblock %}
+{% block body %}
+{{ parent() }}
+<div class="ui segment">
+    <div class="ui two column very relaxed grid">
+        <div class="column">
+            <h2>Utilisateurs</h2>
+            {{byId.users}}
+        </div>
+        <div class="column">
+            <h2>Groupes</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}
