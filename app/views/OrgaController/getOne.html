@@ -6,15 +6,25 @@
 {% endblock %}
 {% block body %}
 {{ parent() }}
-<div class="ui segment">
+<div class="ui attached inverted segment"><a href="{{ path('orga.index') }}" data-target="body"  class="ui basic inverted button">
+    <i class="factory icon"></i>{{byId.name}}
+</a></div>
+<div class="ui attached segment">
+
     <div class="ui two column very relaxed grid">
         <div class="column">
             <h2>Utilisateurs</h2>
-            {{byId.users}}
+            {% for user in byId.users %}
+            <li>{{user}}<label class="ui label"><i class="ui users icon"></i> </label></li>
+            {% endfor %}
         </div>
         <div class="column">
             <h2>Groupes</h2>
+            {% for groupe in byId.groupes %}
+            <li>{{groupe}}</li>
+            {% endfor %}
         </div>
     </div>
+
 </div>
 {% endblock %}
