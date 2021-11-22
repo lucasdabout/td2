@@ -62,4 +62,21 @@ class OrgaController extends \controllers\ControllerBase{
 
 	}
 
+    #[Get(path: "orgas/addOrga",name: "orgas.addOrga")]
+    public function addForm(){
+        $this->loadView('OrgaController/addOrga.html');
+
+    }
+
+    #[Post(path: "Orga/add",name: "orga.add")]
+    public function add(){
+        $orga=new Organization();
+        URequest::setValuesToObject($orga);
+        if(DAO::insert($orga)){
+            $this->loadView('OrgaController/index.html');
+        }
+    }
+
+
+
 }

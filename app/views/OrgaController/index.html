@@ -2,7 +2,7 @@
 {% block header %}
 <a href="{{ path('orga.index') }}" data-target="body"  class="ui basic inverted button">
     <i class="factory icon"></i>Organisations
-</a>
+</a><a href="{{ path('orgas.addOrga') }}"><i class="ui add icon"></i>Ajouter une organisation</a>
 {% endblock %}
 {% block body %}
 {{ parent() }}

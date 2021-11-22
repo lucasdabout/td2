@@ -19,7 +19,13 @@ return array(
 			],
 	"test"=>false,
 	"debug"=>true,
-	"logger"=>function (){return new \Ubiquity\log\libraries\UMonolog("orm-test",\Monolog\Logger::INFO);},
+	"logger"=>function (){
+        return new \Ubiquity\log\libraries\UMonolog(array (
+  'host' => '127.0.0.1',
+  'port' => 8090,
+  'sessionName' => 's61974dd84d22f',
+)['sessionName'], \Monolog\Logger::INFO);
+    },
 	"di"=>[
 			"@exec"=>[
 					"jquery"=>function ($controller){
