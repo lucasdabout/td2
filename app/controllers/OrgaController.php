@@ -15,37 +15,42 @@ use Ubiquity\utils\models\UArrayModels;
   * Controller OrgaController
  * @property JsUtils $jquery
   */
-class OrgaController extends \controllers\ControllerBase{
+class OrgaController extends \controllers\ControllerBase
+{
     private ViewRepository $repo;
 
-    public function initialize() {
+    public function initialize()
+    {
         parent::initialize();
-        $this->repo??=new ViewRepository($this,Organization::class);
+        $this->repo ??= new ViewRepository($this, Organization::class);
     }
 
-    #[Route('/orgas', name:'orga.index')]
-	public function index(){
+    #[Route('/orgas', name: 'orga.index')]
+    public function index()
+    {
         $this->repo->all();
-		$this->loadView("OrgaController/index.html");
-	}
+        $this->loadView("OrgaController/index.html");
+    }
 
-	#[Get(path: "orgas/update/{id}",name: "orgas.update")]
-	public function updateForm($id){
-        $orga=$this->repo->byId($id, false);
-        $df=$this->jquery->semantic()->dataForm('frm-orga',$orga);
-        $df->setActionTarget(Router::path('orgas.submit'),'');
-        $df->setProperty('method','post');
-        $df->setFields(['id','name','submit']);
-        $df->setCaptions(['','nom','Modifier']);
+    #[Get(path: "orgas/update/{id}", name: "orgas.update")]
+    public function updateForm($id)
+    {
+        $orga = $this->repo->byId($id, false);
+        $df = $this->jquery->semantic()->dataForm('frm-orga', $orga);
+        $df->setActionTarget(Router::path('orgas.submit'), '');
+        $df->setProperty('method', 'post');
+        $df->setFields(['id', 'name', 'submit']);
+        $df->setCaptions(['', 'nom', 'Modifier']);
         $df->fieldAsHidden('id');
-        $df->fieldAsSubmit('submit','green fluid');
+        $df->fieldAsSubmit('submit', 'green fluid');
         $this->jquery->renderView('OrgaController/update.html');
-	}
+    }
 
-    #[Post('orgas/update','orgas.submit')]
-    public function update(){
-        $orga=$this->repo->byId(URequest::post('id'));
-        if($orga){
+    #[Post('orgas/update', 'orgas.submit')]
+    public function update()
+    {
+        $orga = $this->repo->byId(URequest::post('id'));
+        if ($orga) {
             URequest::setValuesToObject($orga);
             $this->repo->save($orga);
         }
@@ -53,33 +58,45 @@ class OrgaController extends \controllers\ControllerBase{
     }
 
 
+    #[Get(path: "orga/getOne/{id}", name: "orgas.getOne")]
+    public function getOne($id)
+    {
+        $this->repo->byId($id, ['users.groupes', 'groupes.users']);
+        $this->loadView('OrgaController/getOne.html');
 
+    }
 
-
-	#[Get(path: "orga/getOne/{id}",name: "orgas.getOne")]
-	public function getOne($id){
-		$this->repo->byId($id,['users.groupes','groupes.users']);
-		$this->loadView('OrgaController/getOne.html');
-
-	}
-
-    #[Get(path: "orgas/addOrga",name: "orgas.addOrga")]
-    public function addForm(){
+    #[Get(path: "orgas/addOrga", name: "orgas.addOrga")]
+    public function addForm()
+    {
         $this->loadView('OrgaController/addOrga.html');
 
     }
 
-    #[Post(path: "Orga/add",name: "orga.add")]
-    public function add(){
-        $orga=new Organization();
+    #[Post(path: "Orga/add", name: "orga.add")]
+    public function add()
+    {
+        $orga = new Organization();
         URequest::setValuesToObject($orga);
-        if(DAO::insert($orga)){
+        if (DAO::insert($orga)) {
             $this->index();
         }
 
     }
 
 
+	#[Get(path: "orga/deleteOrga/{idOrga}",name: "orga.deleteOrga")]
+	public function deleteOrga($idOrga){
+		$this->loadView('OrgaController/deleteOrga.html',['id'=>$idOrga]);
 
+	}
 
+    #[Post(path: "orga/delete/{idOrga}",name: "orga.delete")]
+    public function delete($idOrga){
+        $orga=DAO::getById(Organization::class,$idOrga);
+        if(DAO::remove($orga)){
+            $this->index();
+        }
+
+    }
 }

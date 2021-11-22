@@ -5,10 +5,14 @@ namespace controllers;
 use Ajax\php\ubiquity\JsUtils;
 use models\Groupe;
 use models\Organization;
+use Ubiquity\attributes\items\router\Get;
+use Ubiquity\attributes\items\router\Post;
 use Ubiquity\attributes\items\router\Route;
+use Ubiquity\controllers\Router;
 use Ubiquity\orm\DAO;
 use Ubiquity\orm\repositories\ViewRepository;
 use Ubiquity\utils\http\URequest;
+use Ubiquity\utils\http\UResponse;
 use Ubiquity\utils\models\UArrayModels;
 
 /**
@@ -42,6 +46,31 @@ class GroupeController extends \controllers\ControllerBase
 
     #[Post('groupe/submit',name:'groupe.submit')]
     public function submit(){
-        $this->repo->byId(URequest::post('id'));
+        $groupe=$this->repo->byId(URequest::post('id'));
+        URequest::setValuesToObject($groupe);
+        $orga=DAO::getById(Organization::class, URequest::post('organization'));
+        $groupe->setOrganization($orga);
+        $this->repo->update($groupe);
+        UResponse::header('location', Router::url('orgas.getOne',[$orga->getId()]));
     }
+
+    #[Get(path: "groupe/addGroupe",name: 'groupes.addGroupe')]
+    public function addGroupe(){
+        $orgas=DAO::getAll(Organization::class);
+        $this->jquery->semantic()->htmlDropdown('organization',
+           '',UArrayModels::asKeyValues($orgas,'getId'))->asSelect('organization');
+        $this->jquery->renderView('GroupeController/addGroupe.html');
+    }
+
+    #[Post(path: "groupe/add",name: 'groupes.add')]
+    public function add(){
+        $groupe=new Groupe();
+        URequest::setValuesToObject($groupe);
+        if(DAO::insert($groupe)){
+            $this->index();
+        }
+    }
+
+
+
 }

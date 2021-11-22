@@ -1,0 +1,35 @@
+<div class="ui segment olive top">
+    <form class="ui form" action="{{path('groupes.add')}}" method="post">
+        <button class="ui basic olive button" type="button"><i class="add icon"></i>Ajouter un groupe...</button>
+        <div class="ui icon message">
+            <i class="add icon"></i>
+            <div class="content">
+                <div class="header">
+                    Ajout
+                </div>
+                <p>Création d'un nouveau groupe</p>
+            </div>
+        </div>
+        <div class="field">
+            <label>Nom</label>
+            <input type="text" name="name" placeholder="Nom">
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input type="email" name="domain" placeholder="Email">
+        </div>
+        <div class="field">
+            <label>Aliases</label>
+            <input type="text" name="aliases" placeholder="Aliases">
+        </div>
+        <div class="field">
+            <label>Organisations</label>
+            {{ q['organization'] | raw }}
+        </div>
+        <div class="ui segment">
+            <button class="ui olive button" type="submit"><i class="check circle outlined icon"></i>Valider</button>
+            <a class="ui button" href="{{path('orga.index')}}"><i class="circle outline icon"></i>Annuler</a>
+        </div>
+    </form>
+</div>
+{{ script_foot | raw }}

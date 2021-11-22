@@ -138,7 +138,7 @@ class Organization{
 
 
 	 public function __toString(){
-		return ($this->domain??'no value').'';
+		return ($this->name??'no value').'';
 	}
 
 }

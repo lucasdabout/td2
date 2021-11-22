@@ -1,6 +1,6 @@
 <div class="ui container">
     <div class="ui segment">
-        <form class="ui form" action="{{path('groupe.submit')}}" methid="post">
+        <form class="ui form" action="{{path('groupe.submit')}}" method="post">
             <input type="hidden" name="id" value="{{byId.id}}">
             <div class="field">
                 <input type="text" name="name" value="{{byId.name}}">
@@ -9,7 +9,7 @@
                 {{ q['organization'] | raw }}
             </div>
             <div class="ui divider"></div>
-            <button class=" uibutton">Valider</button>
+            <button class="ui button">Valider</button>
         </form>
     </div>
 </div>
