@@ -30,7 +30,8 @@ class GroupeController extends \controllers\ControllerBase
     }
 
     public function index(){
-
+        $this->repo->all();
+        $this->loadView("OrgaController/index.html");
     }
 
     #[Route(path:"groupe/update/{id}",name: "groupe.update")]
