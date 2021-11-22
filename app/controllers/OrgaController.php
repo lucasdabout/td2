@@ -9,6 +9,7 @@ use Ubiquity\controllers\Router;
 use Ubiquity\orm\DAO;
 use Ubiquity\orm\repositories\ViewRepository;
 use Ubiquity\utils\http\URequest;
+use Ubiquity\utils\models\UArrayModels;
 
 /**
   * Controller OrgaController
@@ -73,9 +74,11 @@ class OrgaController extends \controllers\ControllerBase{
         $orga=new Organization();
         URequest::setValuesToObject($orga);
         if(DAO::insert($orga)){
-            $this->loadView('OrgaController/index.html');
+            $this->index();
         }
+
     }
+
 
 
 

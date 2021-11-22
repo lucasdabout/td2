@@ -13,6 +13,9 @@
         <a href="{{path('orgas.update',[orga.id])}}">
             <i class="ui edit icon"></i>
         </a>
+        <a href="{{path('orgas.delete',[orga.id])}}">
+            <i class="ui red delete icon"></i>
+        </a>
     </li>
     {% endfor %}
 </ul>

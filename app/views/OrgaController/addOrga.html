@@ -1,28 +1,31 @@
 
-<div class="ui segment">
-<form class="ui form">
-    <div class="ui segment">
-        <i class="truck icon"></i>
+<div class="ui segment olive top">
+<form class="ui form" action="{{path('orga.add')}}" method="post">
+    <button class="ui basic olive button" type="button"><i class="add icon"></i>Ajouter une organisation...</button>
+    <div class="ui icon message">
+        <i class="calendar plus icon"></i>
         <div class="content">
-            <div class="title">Shipping</div>
-            <div class="description">Choose your shipping options</div>
+            <div class="header">
+                Ajout
+            </div>
+            <p>Création d'une nouvelle organisation</p>
         </div>
     </div>
     <div class="field">
         <label>Nom</label>
-        <input type="text" name="first-name" placeholder="Nom">
+        <input type="text" name="name" placeholder="Nom">
     </div>
     <div class="field">
         <label>Domain</label>
-        <input type="text" name="last-name" placeholder="Domain">
+        <input type="text" name="domain" placeholder="Domain">
     </div>
     <div class="field">
         <label>Alias</label>
-        <input type="text" name="last-name" placeholder="Alias">
+        <input type="text" name="aliases" placeholder="Alias">
     </div>
     <div class="ui segment">
-        <button class="ui green button" type="submit">Valider</button>
-        <button class="ui button" type="submit">Annuler</button>
+        <button class="ui olive button" type="submit"><i class="check circle outlined icon"></i>Valider</button>
+        <a class="ui button" href="{{path('orga.index')}}"><i class="circle outline icon"></i>Annuler</a>
     </div>
 </form>
 </div>

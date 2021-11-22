@@ -1,2 +1,39 @@
-{{ q['frm-orga'] | raw }}
+
+<div class="ui segment olive top">
+    <form class="ui form" action="{{path('orgas.submit')}}" method="post">
+        <button class="ui basic olive button" type="button"><i class="add icon"></i>Modifier une organisation...</button>
+        <div class="ui icon message">
+            <i class="calendar plus icon"></i>
+            <div class="content">
+                <div class="header">
+                    Modification
+                </div>
+                <p>Modification d'une organisation</p>
+            </div>
+        </div>
+        <div class="field">
+            <label>Nom</label>
+            <input type="hidden" name="id" placeholder="Nom" value="{{byId.id}}">
+        </div>
+        <div class="field">
+            <label>Nom</label>
+            <input type="text" name="name" placeholder="Nom" value="{{byId.name}}">
+        </div>
+        <div class="field">
+            <label>Domain</label>
+            <input type="text" name="domain" placeholder="Domain" value="{{byId.domain}}">
+        </div>
+        <div class="field">
+            <label>Alias</label>
+            <input type="text" name="aliases" placeholder="Alias" value="{{byId.aliases}}">
+        </div>
+        <div class="ui segment">
+            <button class="ui olive button" type="submit"><i class="check circle outlined icon"></i>Confirmer</button>
+            <a class="ui button" href="{{path('orga.index')}}"><i class="circle outline icon"></i>Annuler</a>
+        </div>
+    </form>
+</div>
+
+
+
 {{ script_foot | raw }}

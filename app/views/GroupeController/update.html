@@ -1,0 +1,16 @@
+<div class="ui container">
+    <div class="ui segment">
+        <form class="ui form" action="{{path('groupe.submit')}}" methid="post">
+            <input type="hidden" name="id" value="{{byId.id}}">
+            <div class="field">
+                <input type="text" name="name" value="{{byId.name}}">
+            </div>
+            <div class="field">
+                {{ q['organization'] | raw }}
+            </div>
+            <div class="ui divider"></div>
+            <button class=" uibutton">Valider</button>
+        </form>
+    </div>
+</div>
+{{ script_foot | raw }}
