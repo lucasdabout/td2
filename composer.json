@@ -11,8 +11,9 @@
 	"require" : {
 		"php" : ">=7.4",
 		"phpmv/ubiquity": "^2.3",
-		"twig\/twig": "^3.0"
-	},
+		"twig\/twig": "^3.0",
+      "": ""
+    },
 	"license" : "Apache-2.0",
 	"authors" : [{
 			"name" : "Jean-Christophe HERON",

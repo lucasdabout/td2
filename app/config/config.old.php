@@ -7,35 +7,41 @@ return array(
 			"serverName"=>"127.0.0.1",
 			"port"=>3306,
 			"user"=>"root",
-			"password"=>"",
-			"options"=>[],
-			"cache"=>false
+			"password"=>"root",
+			"options"=>array(),
+			"cache"=>false,
+			"wrapper"=>"Ubiquity\\db\\providers\\pdo\\PDOWrapper"
 			],
 	"sessionName"=>"s61974dd84d22f",
-	"namespaces"=>[],
+	"namespaces"=>array(),
 	"templateEngine"=>"Ubiquity\\views\\engine\\Twig",
 	"templateEngineOptions"=>[
 			"cache"=>false
 			],
 	"test"=>false,
 	"debug"=>true,
-	"logger"=>function (){return new \Ubiquity\log\libraries\UMonolog("orm-test",\Monolog\Logger::INFO);},
+	"logger"=>function (){
+        return new \Ubiquity\log\libraries\UMonolog(array (
+  'host' => '127.0.0.1',
+  'port' => 8090,
+  'sessionName' => 's61974dd84d22f',
+)['sessionName'], \Monolog\Logger::INFO);
+    },
 	"di"=>[
-			"@exec"=>[
-					"jquery"=>function ($controller){
+			"@exec"=>array("jquery"=>function ($controller){
 						return \Ajax\php\ubiquity\JsUtils::diSemantic($controller);
-					}
-					]
+					})
 			],
 	"cache"=>[
 			"directory"=>"cache/",
 			"system"=>"Ubiquity\\cache\\system\\ArrayCache",
-			"params"=>[]
+			"params"=>array()
 			],
 	"mvcNS"=>[
 			"models"=>"models",
 			"controllers"=>"controllers",
-			"rest"=>""
+			"rest"=>"",
+			"domains"=>"domains"
 			],
 	"onError"=>function ($code, $message = NULL, $controllerInstance = NULL){
 				switch ($code){

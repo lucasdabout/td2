@@ -5,6 +5,7 @@ namespace controllers;
 use Ajax\php\ubiquity\JsUtils;
 use models\Groupe;
 use models\Organization;
+use models\User;
 use Ubiquity\attributes\items\router\Get;
 use Ubiquity\attributes\items\router\Post;
 use Ubiquity\attributes\items\router\Route;
@@ -58,8 +59,11 @@ class GroupeController extends \controllers\ControllerBase
     #[Get(path: "groupe/addGroupe",name: 'groupes.addGroupe')]
     public function addGroupe(){
         $orgas=DAO::getAll(Organization::class);
+        $org=DAO::getAll(User::class);
         $this->jquery->semantic()->htmlDropdown('organization',
            '',UArrayModels::asKeyValues($orgas,'getId'))->asSelect('organization');
+
+        $this->jquery->semantic()->htmlLabel('users','');
         $this->jquery->renderView('GroupeController/addGroupe.html');
     }
 
@@ -70,8 +74,11 @@ class GroupeController extends \controllers\ControllerBase
         if(DAO::insert($groupe)){
             $this->index();
         }
+
+        $group=DAO::getById($idGroup);
+        URequest::setValuesToObject($group);
+        $users=DAO::getAllById( User::class, explode(',',URequest::post('users')));
+        $group->setUsers($users);
+        DAO::update($group,true);
     }
-
-
-
 }

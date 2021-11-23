@@ -7,9 +7,10 @@ return array(
 			"serverName"=>"127.0.0.1",
 			"port"=>3306,
 			"user"=>"root",
-			"password"=>"",
+			"password"=>"root",
 			"options"=>[],
-			"cache"=>false
+			"cache"=>false,
+			"wrapper"=>"Ubiquity\\db\\providers\\pdo\\PDOWrapper"
 			],
 	"sessionName"=>"s61974dd84d22f",
 	"namespaces"=>[],
@@ -41,7 +42,8 @@ return array(
 	"mvcNS"=>[
 			"models"=>"models",
 			"controllers"=>"controllers",
-			"rest"=>""
+			"rest"=>"",
+			"domains"=>"domains"
 			],
 	"onError"=>function ($code, $message = NULL, $controllerInstance = NULL){
 				switch ($code){
