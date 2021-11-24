@@ -60,6 +60,19 @@ class GroupeController extends \controllers\ControllerBase
         $orgas=DAO::getAll(Organization::class);
         $this->jquery->semantic()->htmlDropdown('organization',
            '',UArrayModels::asKeyValues($orgas,'getId'))->asSelect('organization');
+
+
+
+        $group=new Groupe();
+        URequest::setValuesToObject($group);
+        $users=DAO::getAllById( User::class, explode(',',URequest::post('users')));
+        $group->setUsers($users);
+        DAO::update($group,true);
+
+
+
+
+
         $this->jquery->renderView('GroupeController/addGroupe.html');
     }
 

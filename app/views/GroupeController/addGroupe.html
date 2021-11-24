@@ -26,6 +26,10 @@
             <label>Organisations</label>
             {{ q['organization'] | raw }}
         </div>
+        <div class="field">
+            <label>Users</label>
+            {{ q['organization'] | raw }}
+        </div>
         <div class="ui segment">
             <button class="ui olive button" type="submit"><i class="check circle outlined icon"></i>Valider</button>
             <a class="ui button" href="{{path('orga.index')}}"><i class="circle outline icon"></i>Annuler</a>
